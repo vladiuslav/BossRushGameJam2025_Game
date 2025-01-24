@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://m7d8twset4ka"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Basic_Attack/basic_attack.gd" id="1_23w56"]
+
+[node name="Basic_Attack" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_23w56")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

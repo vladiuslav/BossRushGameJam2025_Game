@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy240sk4y7fo"]
+
+[ext_resource type="Script" path="res://Scenes/BloodFormation/blood_formation.gd" id="1_wxb54"]
+
+[node name="BloodFormation" type="Node2D"]
+script = ExtResource("1_wxb54")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+disabled = true
+
+[node name="Blood_List" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
