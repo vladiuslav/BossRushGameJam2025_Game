@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c14m8lpnmbfrp"
-path="res://.godot/imported/Ogre.png-4d8594840873c65176a290812483fb6f.ctex"
+uid="uid://bv7bvs6p6ffcd"
+path="res://.godot/imported/Arena_2.png-f5683eb46f4aba1698fef7967f9994d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Boss_Ogre/Ogre.png"
-dest_files=["res://.godot/imported/Ogre.png-4d8594840873c65176a290812483fb6f.ctex"]
+source_file="res://Assets/Sprites/Arens/Arena_2.png"
+dest_files=["res://.godot/imported/Arena_2.png-f5683eb46f4aba1698fef7967f9994d0.ctex"]
 
 [params]
 

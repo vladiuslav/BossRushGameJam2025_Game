@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2kqw4ubacm2a"]
+
+[ext_resource type="Script" path="res://Scenes/Bosses/Boss/boss.gd" id="1_gsjfi"]
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_gsjfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

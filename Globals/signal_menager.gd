@@ -1,6 +1,7 @@
 extends Node
 
 signal game_over
+signal boss_killed(boss_number:int)
 
 signal blood_colapse
 signal blood_creation(position:Vector2)

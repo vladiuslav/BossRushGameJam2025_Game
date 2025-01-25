@@ -106,5 +106,5 @@ func hit(damage:int) ->void:
 	print(current_hp)
 	if(current_hp <= 0):
 		SignalManager.game_over.emit()
-		call_deferred("queue_free")
+		print("You died")
 		

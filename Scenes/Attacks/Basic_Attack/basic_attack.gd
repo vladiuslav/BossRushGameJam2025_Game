@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Basic_Attack
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 var damage: int = 1
 var speed: int = 0 # Stay on place by default
 var is_creator_boss_or_plaer:bool
@@ -31,14 +33,10 @@ func setup(is_creator_player: bool, new_position:Vector2, new_direction:Vector2,
 		set_collision_mask_value(1,true) # 1 - Player
 
 func _on_body_entered(body: Node2D) -> void:
-	if(body is Player):
+	if(body is Player or body is Boss):
 		body.hit(damage)
-		queue_free()
-		
-	elif (body is Boss):
-		body.hit(damage)
-		queue_free()
-
+		collision_shape_2d.disabled = true
+	
 
 func _on_timer_timeout() -> void:
 	queue_free()
