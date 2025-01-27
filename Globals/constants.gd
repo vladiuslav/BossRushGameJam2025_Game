@@ -1,0 +1,9 @@
+extends Node
+
+enum ATTACK_TYPES 
+{
+	PLAYER_ATTACK,
+	OGRE_ATTACK,
+	SPELL_FIRE,
+	SPELL_WATER
+}

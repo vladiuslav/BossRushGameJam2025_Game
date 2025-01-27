@@ -84,7 +84,7 @@ func attack() -> void:
 	
 	animation_player.play("attack")
 	
-	SignalManager.create_attack.emit(attack_position, true, attack_direction, 10)
+	SignalManager.create_attack.emit(attack_position, Constants.ATTACK_TYPES.PLAYER_ATTACK, attack_direction)
 
 #Used in Animation Player
 func _change_to_idle() -> void:

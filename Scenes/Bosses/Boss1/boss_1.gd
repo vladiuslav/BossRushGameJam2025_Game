@@ -12,7 +12,8 @@ enum AI_STATES {ATTACK, CHASE, COULDOWN}
 var current_state:AI_STATES = AI_STATES.CHASE
 
 func _ready():
-	pass
+	max_hp = 200
+	current_hp = max_hp
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -66,9 +67,10 @@ func _start_attack() -> void: # phase of attack 1
 func _create_attack() -> void: # phase of attack 2
 	var player: Player = get_tree().get_nodes_in_group("player")[0] as Player
 	var attack_direction:Vector2 = self.global_position.direction_to(player.global_position)
+	
 	var attack_position = self.global_position + (attack_direction * 40)
 	
-	SignalManager.create_attack.emit(attack_position, false, attack_direction, 10)
+	SignalManager.create_attack.emit(attack_position, Constants.ATTACK_TYPES.OGRE_ATTACK, Vector2.ZERO)
 
 func _end_attack() -> void: # phase of attack 3
 	current_state = AI_STATES.COULDOWN

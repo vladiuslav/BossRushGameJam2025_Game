@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Constants="*res://Globals/constants.gd"
 SignalManager="*res://Globals/signal_menager.gd"
 
 [display]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0hawuwkoqrgo"]
+
+[ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_iun3q"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Boss_2_attacks/Icicle/icicle.gd" id="2_8tc8k"]
+[ext_resource type="Texture2D" uid="uid://cupu1mw1rfus3" path="res://Assets/Sprites/Effects/Icicle.png" id="2_fuosh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i3kp"]
+size = Vector2(17, 5)
+
+[sub_resource type="Animation" id="Animation_amd2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_d58k1"]
+resource_name = "attack"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4d00"]
+_data = {
+"RESET": SubResource("Animation_amd2k"),
+"attack": SubResource("Animation_d58k1")
+}
+
+[node name="icicle" instance=ExtResource("1_iun3q")]
+script = ExtResource("2_8tc8k")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fuosh")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_5i3kp")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_w4d00")
+}
+autoplay = "attack"
+
+[node name="Timer" parent="." index="3"]
+wait_time = 5.0

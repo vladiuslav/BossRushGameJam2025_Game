@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b6syfmgksbvky" path="res://Assets/Sprites/Arens/Arena1_Test.png" id="1_brvqs"]
 [ext_resource type="PackedScene" uid="uid://b14ee2h2ynd5o" path="res://Scenes/Attack_Manager/attack_manager.tscn" id="1_i5itx"]
 [ext_resource type="PackedScene" uid="uid://cy240sk4y7fo" path="res://Scenes/BloodFormation/blood_formation.tscn" id="3_fhc8j"]
-[ext_resource type="PackedScene" uid="uid://cckoco0mogh87" path="res://Scenes/Bosses/Boss1/boss_1.tscn" id="5_shwe7"]
+[ext_resource type="PackedScene" uid="uid://bvdw2adk3u50q" path="res://Scenes/Bosses/Boss2/boss_2.tscn" id="5_2w0pt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jwdmh"]
 
@@ -48,5 +48,5 @@ position = Vector2(162.5, 315.999)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_vpvu0")
 
-[node name="Boss1" parent="." instance=ExtResource("5_shwe7")]
-position = Vector2(162, 142)
+[node name="Boss2" parent="." instance=ExtResource("5_2w0pt")]
+position = Vector2(178, 124)

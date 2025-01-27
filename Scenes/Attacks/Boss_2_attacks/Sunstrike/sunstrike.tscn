@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://d34msgo4hbea8"]
+
+[ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_q8cbj"]
+[ext_resource type="Texture2D" uid="uid://c864qvu4j74yj" path="res://Assets/Sprites/Effects/Sunstrike.png" id="2_6u4fj"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Boss_2_attacks/Sunstrike/sunstrike.gd" id="2_okev8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57rb3"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_opkuk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_om57a"]
+resource_name = "shot"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_set_colision_disabled_false"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdhva"]
+_data = {
+"RESET": SubResource("Animation_opkuk"),
+"shot": SubResource("Animation_om57a")
+}
+
+[node name="Sunstrike" instance=ExtResource("1_q8cbj")]
+script = ExtResource("2_okev8")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -32)
+texture = ExtResource("2_6u4fj")
+hframes = 8
+frame = 1
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_57rb3")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_qdhva")
+}
+autoplay = "shot"
+
+[node name="Timer" parent="." index="3"]
+one_shot = false
+autostart = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://besoyagdyflph"]
 
-[ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_kkfxy"]
-[ext_resource type="Texture2D" uid="uid://8yq31qn3rsaf" path="res://Assets/Sprites/Effects/Slash_Round.png" id="2_50b11"]
+[ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_dc43m"]
+[ext_resource type="Texture2D" uid="uid://8yq31qn3rsaf" path="res://Assets/Sprites/Effects/Slash_Round.png" id="2_hnrdk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1j34"]
 radius = 15.2971
@@ -28,10 +28,10 @@ _data = {
 "attack": SubResource("Animation_5cojk")
 }
 
-[node name="Boss_Attack" instance=ExtResource("1_kkfxy")]
+[node name="Boss_Attack" instance=ExtResource("1_dc43m")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_50b11")
+texture = ExtResource("2_hnrdk")
 hframes = 3
 
 [node name="CollisionShape2D" parent="." index="1"]

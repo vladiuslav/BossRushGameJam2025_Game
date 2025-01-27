@@ -5,4 +5,4 @@ signal boss_killed(boss_number:int)
 
 signal blood_colapse
 signal blood_creation(position:Vector2)
-signal create_attack(new_position:Vector2, is_creator_player: bool, direction:Vector2, attack_damage:int)
+signal create_attack(new_position:Vector2, attack_type: Constants.ATTACK_TYPES, direction:Vector2)
