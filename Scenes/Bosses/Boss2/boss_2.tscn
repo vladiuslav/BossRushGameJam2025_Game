@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvdw2adk3u50q"]
+[gd_scene load_steps=21 format=3 uid="uid://bvdw2adk3u50q"]
 
 [ext_resource type="PackedScene" uid="uid://c2kqw4ubacm2a" path="res://Scenes/Bosses/Boss/boss.tscn" id="1_pvamk"]
 [ext_resource type="Script" path="res://Scenes/Bosses/Boss2/boss_2.gd" id="2_qfeg3"]
 [ext_resource type="Texture2D" uid="uid://dbw6kfrhrloek" path="res://Assets/Sprites/Bosses/Boss_Mage_2.png" id="3_13yku"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcp6s"]
-size = Vector2(10, 15)
+[ext_resource type="Texture2D" uid="uid://c2k2hbjivfjyk" path="res://Assets/Sprites/Effects/Shadow/Boss_2_shadow.png" id="3_tl0g6"]
+[ext_resource type="AudioStream" uid="uid://by4r6qpoocqg8" path="res://Assets/Sounds/Arena2/Move_1.mp3" id="5_6wh0e"]
+[ext_resource type="AudioStream" uid="uid://ccx65v4w380bu" path="res://Assets/Sounds/Arena2/Spell_Stone.mp3" id="8_3xk81"]
+[ext_resource type="AudioStream" uid="uid://rbq45pcyb3f" path="res://Assets/Sounds/Arena2/Spell_Air.mp3" id="9_cjqgu"]
 
 [sub_resource type="Animation" id="Animation_xk8d1"]
 length = 0.001
@@ -32,6 +33,37 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [17]
+}
+
+[sub_resource type="Animation" id="Animation_lwt0a"]
+resource_name = "death"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_o8gx0"]
@@ -266,6 +298,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_maic3"]
 _data = {
 "RESET": SubResource("Animation_xk8d1"),
+"death": SubResource("Animation_lwt0a"),
 "idle": SubResource("Animation_o8gx0"),
 "idle_earth": SubResource("Animation_dir7y"),
 "move_down": SubResource("Animation_gyy0v"),
@@ -276,28 +309,60 @@ _data = {
 "spell_water": SubResource("Animation_u6r8v")
 }
 
-[node name="Boss2" instance=ExtResource("1_pvamk")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcp6s"]
+size = Vector2(10, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjwk8"]
+size = Vector2(16, 21)
+
+[node name="Boss2" groups=["boss"] instance=ExtResource("1_pvamk")]
 script = ExtResource("2_qfeg3")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(0, 6)
+texture = ExtResource("3_tl0g6")
+
+[node name="CPUParticles2D" parent="." index="1"]
+amount = 3
+lifetime = 2.0
+scale_amount_min = 2.0
+
+[node name="Sprite2D" parent="." index="2"]
 scale = Vector2(1, 1)
 texture = ExtResource("3_13yku")
 hframes = 4
-vframes = 7
+vframes = 8
 frame = 17
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_pcp6s")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_maic3")
 }
 autoplay = "idle"
 
-[node name="StoneSkinTimer" type="Timer" parent="." index="3"]
+[node name="StoneSkinTimer" type="Timer" parent="." index="4"]
 wait_time = 2.0
 one_shot = true
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pcp6s")
+
+[node name="AudioMove" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource("5_6wh0e")
+
+[node name="AudioEarth" type="AudioStreamPlayer2D" parent="Sounds" index="1"]
+stream = ExtResource("8_3xk81")
+
+[node name="AudioAir" type="AudioStreamPlayer2D" parent="Sounds" index="2"]
+stream = ExtResource("9_cjqgu")
+volume_db = -5.0
+
+[node name="AudioDeath" type="AudioStreamPlayer2D" parent="Sounds" index="3"]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_qjwk8")
 
 [connection signal="timeout" from="StoneSkinTimer" to="." method="_on_stone_skin_timer_timeout"]

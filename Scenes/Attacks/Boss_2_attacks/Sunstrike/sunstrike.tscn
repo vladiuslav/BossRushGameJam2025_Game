@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d34msgo4hbea8"]
+[gd_scene load_steps=9 format=3 uid="uid://d34msgo4hbea8"]
 
 [ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_q8cbj"]
 [ext_resource type="Texture2D" uid="uid://c864qvu4j74yj" path="res://Assets/Sprites/Effects/Sunstrike.png" id="2_6u4fj"]
 [ext_resource type="Script" path="res://Scenes/Attacks/Boss_2_attacks/Sunstrike/sunstrike.gd" id="2_okev8"]
+[ext_resource type="AudioStream" uid="uid://gdifyneyhqwy" path="res://Assets/Sounds/Arena2/Spell_Fire.mp3" id="4_6gj6k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57rb3"]
 radius = 8.0
@@ -83,3 +84,8 @@ autoplay = "shot"
 [node name="Timer" parent="." index="3"]
 one_shot = false
 autostart = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("4_6gj6k")
+volume_db = -15.0
+autoplay = true

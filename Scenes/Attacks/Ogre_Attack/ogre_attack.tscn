@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://8yq31qn3rsaf" path="res://Assets/Sprites/Effects/Slash_Round.png" id="2_hnrdk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1j34"]
-radius = 15.2971
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_5cojk"]
 resource_name = "attack"
@@ -29,10 +29,12 @@ _data = {
 }
 
 [node name="Boss_Attack" instance=ExtResource("1_dc43m")]
+scale = Vector2(1.5, 1.5)
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_hnrdk")
 hframes = 3
+frame = 2
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_h1j34")

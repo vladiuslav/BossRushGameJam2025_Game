@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += _direction * speed * delta
 
-func setup(is_creator_player: bool, position:Vector2, direction:Vector2, speed :int, damage:int) -> void:
+func _setup(is_creator_player: bool, position:Vector2, direction:Vector2, speed :int, damage:int) -> void:
 	
 	self.position = position
 	self.damage = damage
@@ -33,8 +33,8 @@ func setup(is_creator_player: bool, position:Vector2, direction:Vector2, speed :
 
 func _on_body_entered(body: Node2D) -> void:
 	if(body is Player or body is Boss):
-		body.hit(damage)
-		collision_shape_2d.disabled = true
+		body._hit(damage)
+		collision_shape_2d.set_deferred("disabled",true)
 	
 
 func _on_timer_timeout() -> void:

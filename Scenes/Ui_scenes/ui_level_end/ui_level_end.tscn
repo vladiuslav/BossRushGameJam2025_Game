@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://diwip5v58q6v0"]
+
+[ext_resource type="Script" path="res://Scenes/Ui_scenes/ui_level_end/ui_level_end.gd" id="1_02ak7"]
+[ext_resource type="Texture2D" uid="uid://crgetxsssdwc3" path="res://Assets/Sprites/UI/Ui_Button.png" id="1_eod30"]
+[ext_resource type="Texture2D" uid="uid://11ya6ys5p3gi" path="res://Assets/Sprites/UI/UI.png" id="2_icx37"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2oo1"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oih5"]
+atlas = ExtResource("2_icx37")
+region = Rect2(49, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8h02"]
+atlas = ExtResource("2_icx37")
+region = Rect2(65, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqitk"]
+atlas = ExtResource("2_icx37")
+region = Rect2(81, 1, 14, 14)
+
+[node name="UI_level_end" type="MarginContainer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(50, 40)
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_02ak7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_eod30")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_eod30")
+expand_mode = 3
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "12:20
+"
+label_settings = SubResource("LabelSettings_d2oo1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_4oih5")
+
+[node name="RepitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_n8h02")
+
+[node name="NextButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_jqitk")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/RepitButton" to="." method="_on_repit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

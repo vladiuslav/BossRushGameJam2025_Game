@@ -7,3 +7,10 @@ enum ATTACK_TYPES
 	SPELL_FIRE,
 	SPELL_WATER
 }
+
+enum PLAYER_SPELLS 
+{
+	ICE,
+	FIRE,
+	HEAL
+}

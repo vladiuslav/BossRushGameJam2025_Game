@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8gpv0kfwnls"]
+
+[ext_resource type="PackedScene" uid="uid://07vxcoid3gbe" path="res://Scenes/Player/player.tscn" id="1_rladr"]
+[ext_resource type="PackedScene" uid="uid://b14ee2h2ynd5o" path="res://Scenes/Attack_Manager/attack_manager.tscn" id="2_o8f5x"]
+[ext_resource type="PackedScene" uid="uid://cy240sk4y7fo" path="res://Scenes/BloodFormation/blood_formation.tscn" id="3_53i65"]
+[ext_resource type="PackedScene" uid="uid://4yhh7nipawbx" path="res://Scenes/Ui_scenes/UI/ui.tscn" id="4_6n74m"]
+[ext_resource type="PackedScene" uid="uid://cxavwxitv2mk3" path="res://Scenes/Ui_scenes/UI_Pause/ui_pause.tscn" id="5_74acp"]
+[ext_resource type="PackedScene" uid="uid://drwp1x20qhiye" path="res://Scenes/Ui_scenes/Ui_Dialoge/ui_dialoge.tscn" id="6_apis5"]
+[ext_resource type="PackedScene" uid="uid://diwip5v58q6v0" path="res://Scenes/Ui_scenes/ui_level_end/ui_level_end.tscn" id="7_y7fj2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jwdmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpvu0"]
+size = Vector2(12.5, 240)
+
+[node name="Base_arena" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(120, 120)
+
+[node name="Player" parent="." instance=ExtResource("1_rladr")]
+position = Vector2(26, 117)
+
+[node name="Attack_manager" parent="." instance=ExtResource("2_o8f5x")]
+
+[node name="BloodFormation" parent="." instance=ExtResource("3_53i65")]
+
+[node name="ArenaBounders" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_jwdmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(6, 120)
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(120, 6)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(234, 120)
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(120, 234)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(120, 120)
+zoom = Vector2(4, 4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_6n74m")]
+
+[node name="Ui_pause" parent="CanvasLayer" instance=ExtResource("5_74acp")]
+
+[node name="UiDialoge" parent="CanvasLayer" instance=ExtResource("6_apis5")]
+
+[node name="UI_level_end" parent="CanvasLayer" instance=ExtResource("7_y7fj2")]

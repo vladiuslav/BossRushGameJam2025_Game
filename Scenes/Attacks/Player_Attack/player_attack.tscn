@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://rrm5yxe2748p"]
+[gd_scene load_steps=9 format=3 uid="uid://rrm5yxe2748p"]
 
 [ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_7h0a4"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Player_Attack/player_attack.gd" id="2_hf04c"]
 [ext_resource type="Texture2D" uid="uid://dwfclmd88h5en" path="res://Assets/Sprites/Effects/Slash.png" id="2_ysgvh"]
+[ext_resource type="AudioStream" uid="uid://c0b5qmele6q8i" path="res://Assets/Sounds/Player/Slash.mp3" id="4_isuwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ggvav"]
-radius = 7.0
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_gr07d"]
 length = 0.001
@@ -45,10 +47,9 @@ _data = {
 }
 
 [node name="Player_Attack" instance=ExtResource("1_7h0a4")]
-position = Vector2(-1, 0)
+script = ExtResource("2_hf04c")
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ysgvh")
 hframes = 3
 frame = 1
@@ -62,3 +63,7 @@ libraries = {
 "": SubResource("AnimationLibrary_u6irf")
 }
 autoplay = "attack"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("4_isuwm")
+autoplay = true

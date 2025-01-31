@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cckoco0mogh87"]
+[gd_scene load_steps=18 format=3 uid="uid://cckoco0mogh87"]
 
 [ext_resource type="PackedScene" uid="uid://c2kqw4ubacm2a" path="res://Scenes/Bosses/Boss/boss.tscn" id="1_vt3a3"]
 [ext_resource type="Script" path="res://Scenes/Bosses/Boss1/boss_1.gd" id="2_0cm2r"]
 [ext_resource type="Texture2D" uid="uid://dufb2jkm2d031" path="res://Assets/Sprites/Bosses/Boss_Ogre_1.png" id="2_wtayr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxomk"]
-size = Vector2(20, 53)
+[ext_resource type="Texture2D" uid="uid://6xbd2vkmkey0" path="res://Assets/Sprites/Effects/Shadow/Ogre_shadow.png" id="3_r2phn"]
+[ext_resource type="AudioStream" uid="uid://sictghvcicw0" path="res://Assets/Sounds/Arena1/Ogre_move_2.mp3" id="5_82ejy"]
+[ext_resource type="AudioStream" uid="uid://c5k8uhrnxx8p5" path="res://Assets/Sounds/Arena1/Slash_1.mp3" id="6_nv1sl"]
+[ext_resource type="AudioStream" uid="uid://bjarqtbp1v1ia" path="res://Assets/Sounds/Arena1/Ogre_death.mp3" id="7_qv2y6"]
 
 [sub_resource type="Animation" id="Animation_3oinl"]
 length = 0.001
@@ -52,6 +53,37 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"_end_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8tchb"]
+resource_name = "death"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death"
 }]
 }
 
@@ -131,33 +163,67 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_3oinl"),
 "attack": SubResource("Animation_hmcdy"),
+"death": SubResource("Animation_8tchb"),
 "idle": SubResource("Animation_b5bdv"),
 "move_down": SubResource("Animation_f25qs"),
 "move_left": SubResource("Animation_s1iov"),
 "move_up": SubResource("Animation_78k0h")
 }
 
-[node name="Boss1" instance=ExtResource("1_vt3a3")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxomk"]
+size = Vector2(20, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxjbt"]
+size = Vector2(24, 58)
+
+[node name="Boss1" groups=["boss"] instance=ExtResource("1_vt3a3")]
 script = ExtResource("2_0cm2r")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(0, 26)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_r2phn")
+
+[node name="CPUParticles2D" parent="." index="1"]
+position = Vector2(0, 12)
+amount = 4
+lifetime = 2.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+
+[node name="Sprite2D" parent="." index="2"]
 position = Vector2(1, 0)
 texture = ExtResource("2_wtayr")
 hframes = 6
-vframes = 5
+vframes = 6
 frame = 1
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_gxomk")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_ltemv")
 }
 autoplay = "idle"
 
-[node name="AttackCouldownTimer" type="Timer" parent="." index="3"]
+[node name="AttackCouldownTimer" type="Timer" parent="." index="4"]
 one_shot = true
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_gxomk")
+
+[node name="AudioMove" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource("5_82ejy")
+
+[node name="AudioSlash" type="AudioStreamPlayer2D" parent="Sounds" index="1"]
+stream = ExtResource("6_nv1sl")
+
+[node name="AudioDeath" type="AudioStreamPlayer2D" parent="Sounds" index="2"]
+stream = ExtResource("7_qv2y6")
+volume_db = -5.0
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_wxjbt")
 
 [connection signal="timeout" from="AttackCouldownTimer" to="." method="_on_attack_couldown_timer_timeout"]

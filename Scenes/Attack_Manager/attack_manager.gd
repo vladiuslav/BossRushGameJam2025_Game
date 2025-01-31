@@ -38,6 +38,6 @@ func create_attack(new_position:Vector2, attack_type: Constants.ATTACK_TYPES, di
 			damage = 10
 			speed = 150
 	
-	new_attack.setup(is_creator_player, new_position, direction, speed, damage)
+	new_attack._setup(is_creator_player, new_position, direction, speed, damage)
 	
 	self.add_child(new_attack)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0hawuwkoqrgo"]
+[gd_scene load_steps=9 format=3 uid="uid://b0hawuwkoqrgo"]
 
 [ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_iun3q"]
 [ext_resource type="Script" path="res://Scenes/Attacks/Boss_2_attacks/Icicle/icicle.gd" id="2_8tc8k"]
 [ext_resource type="Texture2D" uid="uid://cupu1mw1rfus3" path="res://Assets/Sprites/Effects/Icicle.png" id="2_fuosh"]
+[ext_resource type="AudioStream" uid="uid://bqp5703e3u4oh" path="res://Assets/Sounds/Arena2/Spell_Ice.wav" id="4_fgkh1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i3kp"]
 size = Vector2(17, 5)
@@ -66,3 +67,7 @@ autoplay = "attack"
 
 [node name="Timer" parent="." index="3"]
 wait_time = 5.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("4_fgkh1")
+autoplay = true

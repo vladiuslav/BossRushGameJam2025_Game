@@ -3,23 +3,34 @@ extends Node2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 @onready var blood_list: Node = $Blood_List
 @onready var timer: Timer = $Timer
+@onready var sprite_2d: Sprite2D = $Area2D/Sprite2D
 
-
-const BLOOD = preload("res://Scenes/Blood/blood.tscn")
+const FIRE_BLOOD = preload("res://Scenes/Blood/Spells_Blood/fire_blood.tscn")
+const ICE_BLOOD = preload("res://Scenes/Blood/Spells_Blood/ice_blood.tscn")
+const HEAL_BLOOD = preload("res://Scenes/Blood/Spells_Blood/heal_blood.tscn")
 
 func _ready() -> void:
 	SignalManager.blood_creation.connect(_create_blood)
 	SignalManager.blood_colapse.connect(_blood_colapse)
-
+	SignalManager.blood_colapse_cancel.connect(_blood_colapse_cancel)
 
 func _process(delta: float) -> void:
 	pass
 
 func _create_blood(new_blood_pos:Vector2) ->void:
-	var new_blood: Blood = BLOOD.instantiate() as Blood
+	var new_blood: Blood
+	
+	match Global.curent_spell:
+		Constants.PLAYER_SPELLS.FIRE:
+			new_blood = FIRE_BLOOD.instantiate()
+		Constants.PLAYER_SPELLS.ICE:
+			new_blood = ICE_BLOOD.instantiate()
+		Constants.PLAYER_SPELLS.HEAL:
+			new_blood = HEAL_BLOOD.instantiate()
+			
 	
 	if (blood_list.get_children().is_empty()):
-		new_blood.prev_blood = null 
+		new_blood.prev_blood = null
 	else :
 		var prev_blood = blood_list.get_children().back() as Blood
 		new_blood.prev_blood = prev_blood
@@ -30,10 +41,18 @@ func _create_blood(new_blood_pos:Vector2) ->void:
 	blood_list.add_child(new_blood)
 
 func _blood_colapse() -> void:
-	collision_polygon_2d.polygon = _get_blood_vectors()
-	collision_polygon_2d.disabled = false
+	collision_polygon_2d.set_deferred("polygon",_get_blood_vectors())
+	collision_polygon_2d.set_deferred("disabled",false)
 	timer.start()
 	#Check for colision and remove poligon
+
+func _blood_colapse_cancel() -> void:
+	for child in blood_list.get_children():
+		blood_list.remove_child(child)
+		child.queue_free()
+	
+	collision_polygon_2d.set_deferred("disabled",true)
+	collision_polygon_2d.set_deferred("polygon",PackedVector2Array())
 
 func _get_blood_vectors() -> PackedVector2Array:
 	var new_array : PackedVector2Array = PackedVector2Array() 
@@ -45,7 +64,17 @@ func _get_blood_vectors() -> PackedVector2Array:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	timer.timeout.emit()
-	#Add there damage logic
+	var boss = body as Boss
+	
+	match Global.curent_spell:
+		Constants.PLAYER_SPELLS.FIRE:
+			boss._hit(30)
+		Constants.PLAYER_SPELLS.ICE:
+			boss._hit(20)
+			boss.apply_slow()
+		Constants.PLAYER_SPELLS.HEAL:
+			boss.apply_tick_damage()
+			
 
 
 func _on_timer_timeout() -> void:
@@ -53,5 +82,5 @@ func _on_timer_timeout() -> void:
 		blood_list.remove_child(child)
 		child.queue_free()
 	
-	collision_polygon_2d.disabled = true
-	collision_polygon_2d.polygon = PackedVector2Array()
+	collision_polygon_2d.set_deferred("disabled",true)
+	collision_polygon_2d.set_deferred("polygon",PackedVector2Array())

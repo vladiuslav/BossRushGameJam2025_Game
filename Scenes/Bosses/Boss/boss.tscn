@@ -1,13 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2kqw4ubacm2a"]
+[gd_scene load_steps=4 format=3 uid="uid://c2kqw4ubacm2a"]
 
 [ext_resource type="Script" path="res://Scenes/Bosses/Boss/boss.gd" id="1_gsjfi"]
 
+[sub_resource type="Curve" id="Curve_ao4fs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xh51h"]
+colors = PackedColorArray(0.77084, 0.770839, 0.770839, 0.623529, 0.733005, 0.733005, 0.733005, 0.156863)
+
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_gsjfi")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 6
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_ao4fs")
+color_ramp = SubResource("Gradient_xh51h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="TimerSlow" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="TimerTickDamage" type="Timer" parent="." groups=["boss"]]
+wait_time = 1.5
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[connection signal="timeout" from="TimerSlow" to="." method="_on_timer_slow_timeout"]
+[connection signal="timeout" from="TimerTickDamage" to="." method="_on_timer_tick_damage_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

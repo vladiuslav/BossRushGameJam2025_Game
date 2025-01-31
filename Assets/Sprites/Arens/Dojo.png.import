@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6syfmgksbvky"
-path="res://.godot/imported/Arena1_Test.png-1cb44936e20bd53267d9bb1b3a479eb5.ctex"
+uid="uid://dwmdvdx3sh63u"
+path="res://.godot/imported/Dojo.png-5ab22fb96623f871c60589458351df15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Arens/Arena1_Test.png"
-dest_files=["res://.godot/imported/Arena1_Test.png-1cb44936e20bd53267d9bb1b3a479eb5.ctex"]
+source_file="res://Assets/Sprites/Arens/Dojo.png"
+dest_files=["res://.godot/imported/Dojo.png-5ab22fb96623f871c60589458351df15.ctex"]
 
 [params]
 

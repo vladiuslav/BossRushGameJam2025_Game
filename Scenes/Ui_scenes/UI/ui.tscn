@@ -1,0 +1,122 @@
+[gd_scene load_steps=13 format=3 uid="uid://4yhh7nipawbx"]
+
+[ext_resource type="Texture2D" uid="uid://11ya6ys5p3gi" path="res://Assets/Sprites/UI/UI.png" id="1_4wo0d"]
+[ext_resource type="Script" path="res://Scenes/Ui_scenes/UI/ui.gd" id="1_u5k6l"]
+[ext_resource type="PackedScene" uid="uid://dh6ao3o8akk3w" path="res://Scenes/Ui_scenes/Ui_Spell_Wheel/SpellWhell.tscn" id="3_7kxw8"]
+[ext_resource type="Texture2D" uid="uid://crgetxsssdwc3" path="res://Assets/Sprites/UI/Ui_Button.png" id="4_55q4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu2jl"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(34, 52, 37, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ionxr"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(32, 32, 41, 7)
+margin = Rect2(-2, -2, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuojn"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(34, 42, 37, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6405v"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(34, 47, 37, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soq3g"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(34, 75, 52, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qkn"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(32, 57, 56, 10)
+margin = Rect2(-2, -2, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54fxi"]
+atlas = ExtResource("1_4wo0d")
+region = Rect2(34, 68, 52, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3rf2"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.991379)
+script = ExtResource("1_u5k6l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Player_health" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+texture_under = SubResource("AtlasTexture_vu2jl")
+texture_over = SubResource("AtlasTexture_ionxr")
+texture_progress = SubResource("AtlasTexture_iuojn")
+
+[node name="Player_blood" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_under = SubResource("AtlasTexture_vu2jl")
+texture_over = SubResource("AtlasTexture_ionxr")
+texture_progress = SubResource("AtlasTexture_6405v")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 20.0
+grow_horizontal = 2
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 0)
+theme_override_constants/margin_top = 10
+
+[node name="Boss_health" type="TextureProgressBar" parent="MarginContainer2"]
+layout_mode = 2
+value = 100.0
+texture_under = SubResource("AtlasTexture_soq3g")
+texture_over = SubResource("AtlasTexture_s7qkn")
+texture_progress = SubResource("AtlasTexture_54fxi")
+
+[node name="SpellWhell" parent="." instance=ExtResource("3_7kxw8")]
+layout_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_right = -83.0
+offset_bottom = 40.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer3"]
+layout_mode = 2
+texture = ExtResource("4_55q4y")
+expand_mode = 3
+
+[node name="TimerLabel" type="Label" parent="MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "00:00"
+label_settings = SubResource("LabelSettings_p3rf2")

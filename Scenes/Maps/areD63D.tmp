@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8gpv0kfwnls"]
+
+[ext_resource type="PackedScene" uid="uid://07vxcoid3gbe" path="res://Scenes/Player/player.tscn" id="1_6urj4"]
+[ext_resource type="PackedScene" uid="uid://b14ee2h2ynd5o" path="res://Scenes/Attack_Manager/attack_manager.tscn" id="1_i5itx"]
+[ext_resource type="Texture2D" uid="uid://dvd4eqqtfjqxi" path="res://Assets/Sprites/Arens/Arena_1.png" id="1_vnmxx"]
+[ext_resource type="PackedScene" uid="uid://cy240sk4y7fo" path="res://Scenes/BloodFormation/blood_formation.tscn" id="3_fhc8j"]
+[ext_resource type="PackedScene" uid="uid://cckoco0mogh87" path="res://Scenes/Bosses/Boss1/boss_1.tscn" id="5_2wbos"]
+[ext_resource type="PackedScene" uid="uid://bvdw2adk3u50q" path="res://Scenes/Bosses/Boss2/boss_2.tscn" id="6_2g7yi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jwdmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpvu0"]
+size = Vector2(12.5, 240)
+
+[node name="Arena" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(120, 120)
+texture = ExtResource("1_vnmxx")
+
+[node name="Attack_manager" parent="." instance=ExtResource("1_i5itx")]
+
+[node name="Player" parent="." instance=ExtResource("1_6urj4")]
+position = Vector2(75, 105)
+
+[node name="BloodFormation" parent="." instance=ExtResource("3_fhc8j")]
+
+[node name="ArenaBounders" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_jwdmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(6, 120)
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(120, 6)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(234, 120)
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ArenaBounders"]
+position = Vector2(120, 234)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vpvu0")
+
+[node name="Boss1" parent="." instance=ExtResource("5_2wbos")]
+position = Vector2(188, 58)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(120, 120)
+zoom = Vector2(3.8, 3.8)
+
+[node name="Boss2" parent="." instance=ExtResource("6_2g7yi")]
+position = Vector2(138, 164)
