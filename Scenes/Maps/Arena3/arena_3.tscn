@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7bdj0ju8dk5"]
+
+[ext_resource type="PackedScene" uid="uid://b8gpv0kfwnls" path="res://Scenes/Maps/Base_Arena.tscn" id="1_sky7o"]
+[ext_resource type="Texture2D" uid="uid://v4yymd84cw0x" path="res://Assets/Sprites/Arens/Arena_3.png" id="2_ohmi7"]
+
+[node name="Arena_3" instance=ExtResource("1_sky7o")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_ohmi7")
+
+[node name="Player" parent="." index="1"]
+position = Vector2(124, 196)
+
+[node name="CollisionShape2D" parent="ArenaBounders" index="0"]
+position = Vector2(26, 120)
+
+[node name="CollisionShape2D2" parent="ArenaBounders" index="1"]
+position = Vector2(120, 17)
+
+[node name="CollisionShape2D3" parent="ArenaBounders" index="2"]
+position = Vector2(227, 120)
+
+[node name="CollisionShape2D4" parent="ArenaBounders" index="3"]
+position = Vector2(120, 227)
+
+[node name="UiDialoge" parent="CanvasLayer" index="2"]
+Lines = PackedStringArray("May be it to", "Works")

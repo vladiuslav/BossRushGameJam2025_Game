@@ -18,7 +18,7 @@ enum AI_STATES {ATTACK, CHASE, COULDOWN, DEATH}
 var current_state:AI_STATES = AI_STATES.CHASE
 
 func _ready():
-	max_hp = 200
+	max_hp = 5
 	current_hp = max_hp
 
 func _physics_process(delta: float) -> void:

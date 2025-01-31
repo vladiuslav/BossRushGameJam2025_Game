@@ -11,7 +11,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jwdmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpvu0"]
-size = Vector2(12.5, 240)
+size = Vector2(34.25, 233)
 
 [node name="Base_arena" type="Node2D"]
 
@@ -56,6 +56,7 @@ zoom = Vector2(4, 4)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("4_6n74m")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Ui_pause" parent="CanvasLayer" instance=ExtResource("5_74acp")]
 

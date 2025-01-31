@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_pressed() -> void:
-	Global.change_current_scene(Global.SCENES.arena_1)
+	Global.change_current_scene(Global.SCENES.dojo)
 
 
 func _on_settings_button_pressed() -> void:

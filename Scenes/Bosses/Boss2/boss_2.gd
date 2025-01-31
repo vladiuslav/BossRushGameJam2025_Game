@@ -27,7 +27,7 @@ var current_state : AI_STATES = AI_STATES.IDLE
 var next_position = null
 
 func _ready() -> void:
-	max_hp = 300
+	max_hp = 5
 	current_hp = max_hp
 	
 	_change_state(AI_STATES.MOVE)
