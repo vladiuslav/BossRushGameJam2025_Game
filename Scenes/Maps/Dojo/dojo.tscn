@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kai4xv8xcdpd"]
+[gd_scene load_steps=10 format=3 uid="uid://kai4xv8xcdpd"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/Dojo/dojo.gd" id="1_2ptge"]
 [ext_resource type="Texture2D" uid="uid://dwmdvdx3sh63u" path="res://Assets/Sprites/Arens/Dojo.png" id="2_qalpt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drwp1x20qhiye" path="res://Scenes/Ui_scenes/Ui_Dialoge/ui_dialoge.tscn" id="4_qifne"]
 [ext_resource type="Texture2D" uid="uid://fwtwqa5vjysu" path="res://Assets/Sprites/Masters/MageOfSupport.png" id="5_1c6ii"]
 [ext_resource type="Texture2D" uid="uid://bssspxcj1saey" path="res://Assets/Sprites/Masters/MageOfVampiric.png" id="6_bfjlj"]
+[ext_resource type="AudioStream" uid="uid://b8rjund833gls" path="res://Assets/Music/DojoMusic.mp3" id="9_nfvov"]
 
 [node name="Dojo" type="Node2D"]
 script = ExtResource("1_2ptge")
@@ -46,3 +47,6 @@ texture = ExtResource("6_bfjlj")
 
 [node name="UiDialoge" parent="CanvasLayer" instance=ExtResource("4_qifne")]
 Lines = PackedStringArray("The Three Masters in unison: \"Alright, our student, let us explain how things work.\"", "Player: \"I\'m listening carefully.\"", "Attack Master: \"From me, you’ll get the Circle of Blood, which deals damage to a monster if you manage to spin it in.\"", "Vampirism Master: \"If things get really tough, use my circle. It will also deal damage to the monster, but you’ll be able to heal a bit from that damage.\"", "Support Master: \"And if you can’t spin the monster in time.\"", "Support Master: \"Use my circle—it will freeze them slightly and deal a bit of damage.\"", "Player: \"How do I know which circle I’m using?\"", "Attack Master: \"It’s simple—they have different colors. Mine, for example, is red.\"", "Vampirism Master: \"Mine will be slightly red, but the dominant color is green.\"", "Support Master: \"And mine is blue.\"", "Player: \"How do I switch circles and start drawing?\"", "The Three Masters in unison: \"To start drawing, you first need to gather the monster’s blood.\"", "The Three Masters in unison: \"Use your sword to attack—press F. And the blood will flow down the blade onto the earth.\"", "The Three Masters in unison: \"Once you have enough blood, you can stab your sword into the ground.\"", "The Three Masters in unison: \"And the blood will flow down the blade onto the earth. You can do this by pressing Shift.\"", "The Three Masters in unison: \"To change the circle’s effect, you need to press the Q.\"", "Player: \"Got it. Shall we get started?\"", "The Three Masters in unison: \"Great idea! There are three monsters nearby.\"", "The Three Masters in unison: \"One is a simple brute—you can practice your new techniques on him.\"", "The Three Masters in unison: \"That’s an Ogre—he’s a bit slow, but if he hits you with his club, it’s gonna hurt.\"", "The Three Masters in unison: \"The second is a mage who has taken over an ancient castle.\"", "The Three Masters in unison: \"He controls four elements—be especially careful of his solar ray, it moves fast.\"", "The Three Masters in unison: \"And the third one lurks atop the mountain. They say this monster can control lightning.\"", "The Three Masters in unison: \"Just remember, once you start drawing a circle.\"", "The Three Masters in unison: \"You won’t be able to cancel it—you’ll have to finish it completely.\"")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_nfvov")

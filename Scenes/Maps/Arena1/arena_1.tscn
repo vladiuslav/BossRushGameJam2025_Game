@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://2w2rd0vo1gxg"]
+[gd_scene load_steps=7 format=3 uid="uid://2w2rd0vo1gxg"]
 
 [ext_resource type="PackedScene" uid="uid://b8gpv0kfwnls" path="res://Scenes/Maps/Base_Arena.tscn" id="1_2ank4"]
 [ext_resource type="Texture2D" uid="uid://dvd4eqqtfjqxi" path="res://Assets/Sprites/Arens/Arena_1.png" id="2_wyaht"]
 [ext_resource type="Script" path="res://Scenes/Maps/Arena1/arena_1.gd" id="2_xlfy3"]
 [ext_resource type="PackedScene" uid="uid://cckoco0mogh87" path="res://Scenes/Bosses/Boss1/boss_1.tscn" id="3_ttfcx"]
 [ext_resource type="AudioStream" uid="uid://x4ybxjlcgo5u" path="res://Assets/Sounds/Player/Level_Win.mp3" id="5_766yo"]
+[ext_resource type="AudioStream" uid="uid://6fle2bnqqgwc" path="res://Assets/Music/OgreMusic.mp3" id="6_niw8c"]
 
 [node name="Arena_1" instance=ExtResource("1_2ank4")]
 script = ExtResource("2_xlfy3")
@@ -25,3 +26,7 @@ Lines = PackedStringArray("Ogre: *Sniffs* \"Who dares to crash my party uninvite
 [node name="AudioLevelWin" type="AudioStreamPlayer2D" parent="." index="8"]
 process_mode = 3
 stream = ExtResource("5_766yo")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("6_niw8c")
+autoplay = true

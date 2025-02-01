@@ -37,39 +37,21 @@ tracks/1/keys = {
 "values": [Vector2i(1, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_opreg"]
-resource_name = "move"
-length = 0.6
-loop_mode = 1
-step = 0.1
+[sub_resource type="Animation" id="Animation_tse6v"]
+resource_name = "blinklash"
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_4ggc2"]
-resource_name = "thunderbrand"
-length = 0.8
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -78,11 +60,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7, 0.8),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"_cast_thunderbrand"
+"method": &"_cast_blinklash"
 }, {
 "args": [],
 "method": &"set_state_move"
@@ -120,38 +102,22 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_tse6v"]
-resource_name = "blinklash"
-length = 0.5
-step = 0.05
+[sub_resource type="Animation" id="Animation_opreg"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_cast_blinklash"
-}, {
-"args": [],
-"method": &"set_state_move"
-}]
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_kwrfc"]
@@ -182,6 +148,40 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"_cast_stormstrike"
+}, {
+"args": [],
+"method": &"set_state_move"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4ggc2"]
+resource_name = "thunderbrand"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_cast_thunderbrand"
 }, {
 "args": [],
 "method": &"set_state_move"
