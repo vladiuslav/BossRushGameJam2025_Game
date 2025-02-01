@@ -37,4 +37,12 @@ text = "Person: \"Example of dialoge line\""
 autowrap_mode = 2
 script = ExtResource("1_5i0xv")
 
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 609.5
+offset_right = 631.5
+offset_bottom = 45.0
+text = " > "
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

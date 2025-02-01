@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl7bdj0ju8dk5"]
+[gd_scene load_steps=5 format=3 uid="uid://bl7bdj0ju8dk5"]
 
 [ext_resource type="PackedScene" uid="uid://b8gpv0kfwnls" path="res://Scenes/Maps/Base_Arena.tscn" id="1_sky7o"]
 [ext_resource type="Texture2D" uid="uid://v4yymd84cw0x" path="res://Assets/Sprites/Arens/Arena_3.png" id="2_ohmi7"]
+[ext_resource type="Script" path="res://Scenes/Maps/Arena3/arena_3.gd" id="2_u2i20"]
+[ext_resource type="PackedScene" uid="uid://okjmyx382eom" path="res://Scenes/Bosses/Boss3/boss_3.tscn" id="4_n4ykk"]
 
 [node name="Arena_3" instance=ExtResource("1_sky7o")]
+script = ExtResource("2_u2i20")
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_ohmi7")
@@ -23,5 +26,18 @@ position = Vector2(227, 120)
 [node name="CollisionShape2D4" parent="ArenaBounders" index="3"]
 position = Vector2(120, 227)
 
+[node name="UI" parent="CanvasLayer" index="0"]
+visible = false
+
 [node name="UiDialoge" parent="CanvasLayer" index="2"]
+
 Lines = PackedStringArray("Zeus: \"You are not prepared.\"", "Player: \"No, actually, I am ready.\"", "Zeus: \"Oh, well… since you\'re ready...\"", "Player: \"Wait, ready for what exactly?\"", "Zeus: \"For your death.\" ", "Zeus: \"You came into my domain and dared to kill my servants.\"", "Zeus: \"Do you think you’ll get away with it?\"", "Player: \"I just need to kill you, and that will be the end of your long-lasting tyranny, won’t it?\"", "Zeus: \"Do you really think you can defeat me so easily?\"", "Zeus: \"You are nothing but filth, and you deserve nothing more than to die in the mud.\"", "Player: \"In that case, I’ll make sure you drown in it.\"")
+
+[node name="Boss_3" parent="." index="7" instance=ExtResource("4_n4ykk")]
+position = Vector2(132, 61)
+
+[node name="AudioLevelWin" type="AudioStreamPlayer2D" parent="." index="8"]
+position = Vector2(132, 61)
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." index="9"]
+position = Vector2(132, 61)

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://eyw2d0l8g0oq"]
+
+[ext_resource type="PackedScene" uid="uid://m7d8twset4ka" path="res://Scenes/Attacks/Basic_Attack/basic_attack.tscn" id="1_oabx7"]
+[ext_resource type="Texture2D" uid="uid://bn41ckfsfnl6l" path="res://Assets/Sprites/Effects/Thunderbolt.png" id="2_28a2t"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Boss_3_attacks/thunder.gd" id="2_grspx"]
+[ext_resource type="AudioStream" uid="uid://biwri32t5llb7" path="res://Assets/Sounds/Arena3/Skill_2_ultimate.mp3" id="4_q7ksj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_du1og"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_vnyl3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_0etwq"]
+resource_name = "attack"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_set_colision_disabled_false"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulpjb"]
+_data = {
+"RESET": SubResource("Animation_vnyl3"),
+"attack": SubResource("Animation_0etwq")
+}
+
+[node name="Thunder" instance=ExtResource("1_oabx7")]
+script = ExtResource("2_grspx")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -32)
+texture = ExtResource("2_28a2t")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_du1og")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ulpjb")
+}
+autoplay = "attack"
+
+[node name="Timer" parent="." index="3"]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("4_q7ksj")
+autoplay = true

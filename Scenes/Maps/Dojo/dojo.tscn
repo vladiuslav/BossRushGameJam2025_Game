@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://kai4xv8xcdpd"]
+[gd_scene load_steps=9 format=3 uid="uid://kai4xv8xcdpd"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/Dojo/dojo.gd" id="1_2ptge"]
 [ext_resource type="Texture2D" uid="uid://dwmdvdx3sh63u" path="res://Assets/Sprites/Arens/Dojo.png" id="2_qalpt"]
+[ext_resource type="Texture2D" uid="uid://d345maodo48k2" path="res://Assets/Sprites/MainCharacter/player.png" id="3_p8y3b"]
 [ext_resource type="PackedScene" uid="uid://cxavwxitv2mk3" path="res://Scenes/Ui_scenes/UI_Pause/ui_pause.tscn" id="3_v1o0v"]
+[ext_resource type="Texture2D" uid="uid://iurmp04u84dm" path="res://Assets/Sprites/Masters/MageOfAttack.png" id="4_io5r8"]
 [ext_resource type="PackedScene" uid="uid://drwp1x20qhiye" path="res://Scenes/Ui_scenes/Ui_Dialoge/ui_dialoge.tscn" id="4_qifne"]
+[ext_resource type="Texture2D" uid="uid://fwtwqa5vjysu" path="res://Assets/Sprites/Masters/MageOfSupport.png" id="5_1c6ii"]
+[ext_resource type="Texture2D" uid="uid://bssspxcj1saey" path="res://Assets/Sprites/Masters/MageOfVampiric.png" id="6_bfjlj"]
 
 [node name="Dojo" type="Node2D"]
 script = ExtResource("1_2ptge")
@@ -16,6 +20,25 @@ texture = ExtResource("2_qalpt")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(120, 120)
 zoom = Vector2(3.8, 3.8)
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(120, 150)
+texture = ExtResource("3_p8y3b")
+hframes = 6
+vframes = 14
+frame = 6
+
+[node name="MageAttack" type="Sprite2D" parent="."]
+position = Vector2(120, 120)
+texture = ExtResource("4_io5r8")
+
+[node name="MageSupport" type="Sprite2D" parent="."]
+position = Vector2(100, 120)
+texture = ExtResource("5_1c6ii")
+
+[node name="MageVampiric" type="Sprite2D" parent="."]
+position = Vector2(140, 120)
+texture = ExtResource("6_bfjlj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

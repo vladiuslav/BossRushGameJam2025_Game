@@ -21,3 +21,9 @@ func _on_pressed() -> void:
 	else:
 		visible = false
 		SignalManager.end_dialoge.emit()
+
+
+
+func _on_skip_button_pressed() -> void:
+	visible = false
+	SignalManager.end_dialoge.emit()

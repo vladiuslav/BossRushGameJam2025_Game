@@ -3,11 +3,19 @@ extends Node2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 @onready var blood_list: Node = $Blood_List
 @onready var timer: Timer = $Timer
-@onready var sprite_2d: Sprite2D = $Area2D/Sprite2D
 
-const FIRE_BLOOD = preload("res://Scenes/Blood/Spells_Blood/fire_blood.tscn")
-const ICE_BLOOD = preload("res://Scenes/Blood/Spells_Blood/ice_blood.tscn")
-const HEAL_BLOOD = preload("res://Scenes/Blood/Spells_Blood/heal_blood.tscn")
+const FIRE_BLOOD = preload("res://Scenes/BloodFormation/Blood/Spells_Blood/fire_blood.tscn")
+const ICE_BLOOD = preload("res://Scenes/BloodFormation/Blood/Spells_Blood/ice_blood.tscn")
+const HEAL_BLOOD = preload("res://Scenes/BloodFormation/Blood/Spells_Blood/heal_blood.tscn")
+
+@onready var fire_spell_end: AnimatedSprite2D = $FireSpellEnd
+@onready var ice_spell_end: AnimatedSprite2D = $IceSpellEnd
+@onready var heal_spell_end: AnimatedSprite2D = $HealSpellEnd
+
+@onready var audio_fire: AudioStreamPlayer2D = $AudioFire
+@onready var audio_ice: AudioStreamPlayer2D = $AudioIce
+@onready var audio_heal: AudioStreamPlayer2D = $AudioHeal
+
 
 func _ready() -> void:
 	SignalManager.blood_creation.connect(_create_blood)
@@ -43,6 +51,7 @@ func _create_blood(new_blood_pos:Vector2) ->void:
 func _blood_colapse() -> void:
 	collision_polygon_2d.set_deferred("polygon",_get_blood_vectors())
 	collision_polygon_2d.set_deferred("disabled",false)
+	spell_effect_end()
 	timer.start()
 	#Check for colision and remove poligon
 
@@ -61,6 +70,38 @@ func _get_blood_vectors() -> PackedVector2Array:
 		new_array.append(blood.position)
 	
 	return new_array
+
+func spell_effect_end() -> void:
+	var center = get_center()
+	match Global.curent_spell:
+		Constants.PLAYER_SPELLS.FIRE:
+			fire_spell_end.position = center
+			fire_spell_end.play("default")
+			fire_spell_end.visible = true
+			audio_fire.play()
+			
+		Constants.PLAYER_SPELLS.ICE:
+			ice_spell_end.position = center
+			ice_spell_end.play("default")
+			ice_spell_end.visible = true
+			audio_ice.play()
+			
+		Constants.PLAYER_SPELLS.HEAL:
+			heal_spell_end.position = center
+			heal_spell_end.play("default")
+			heal_spell_end.visible = true
+			audio_heal.play()
+
+func get_center() -> Vector2:
+	var center : Vector2 = Vector2.ZERO
+	
+	for child in blood_list.get_children() :
+		var blood = child as Blood
+		center += blood.position
+	
+	center /= blood_list.get_child_count()
+	return center
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	timer.timeout.emit()
@@ -84,3 +125,15 @@ func _on_timer_timeout() -> void:
 	
 	collision_polygon_2d.set_deferred("disabled",true)
 	collision_polygon_2d.set_deferred("polygon",PackedVector2Array())
+
+
+func _on_fire_spell_end_animation_finished() -> void:
+	fire_spell_end.visible = false
+
+
+func _on_ice_spell_end_animation_finished() -> void:
+	ice_spell_end.visible = false
+
+
+func _on_heal_spell_end_animation_finished() -> void:
+	heal_spell_end.visible = false
