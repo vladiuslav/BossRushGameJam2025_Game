@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://clr4elbjjundh"]
 
-[ext_resource type="PackedScene" uid="uid://cqwvq1nar3vic" path="res://Scenes/Blood/blood.tscn" id="1_2gkmx"]
+[ext_resource type="PackedScene" uid="uid://cqwvq1nar3vic" path="res://Scenes/BloodFormation/Blood/blood.tscn" id="1_2gkmx"]
 [ext_resource type="Texture2D" uid="uid://lckhpceuy81l" path="res://Assets/Sprites/Blood/blood_ice.png" id="2_0ts1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvl1w"]

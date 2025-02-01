@@ -5,6 +5,9 @@ const OGRE_ATTACK = preload("res://Scenes/Attacks/Ogre_Attack/ogre_attack.tscn")
 const SUNSTRIKE = preload("res://Scenes/Attacks/Boss_2_attacks/Sunstrike/sunstrike.tscn")
 const ICICLE = preload("res://Scenes/Attacks/Boss_2_attacks/Icicle/icicle.tscn")
 
+const GROUND_LIGHTING = preload("res://Scenes/Attacks/Boss_3_attacks/ground_lighting.tscn")
+const THUNDER = preload("res://Scenes/Attacks/Boss_3_attacks/thunder.tscn")
+
 func _ready() -> void:
 	SignalManager.create_attack.connect(create_attack)
 
@@ -37,6 +40,15 @@ func create_attack(new_position:Vector2, attack_type: Constants.ATTACK_TYPES, di
 			new_attack = ICICLE.instantiate()
 			damage = 10
 			speed = 150
+			
+		Constants.ATTACK_TYPES.SPELL_GROUND_LIGHTING:
+			new_attack = GROUND_LIGHTING.instantiate()
+			damage = 5
+			speed = 100
+			
+		Constants.ATTACK_TYPES.SPELL_THUNDER:
+			new_attack = THUNDER.instantiate()
+			damage = 20
 	
 	new_attack._setup(is_creator_player, new_position, direction, speed, damage)
 	

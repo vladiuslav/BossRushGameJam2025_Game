@@ -1,6 +1,106 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy240sk4y7fo"]
+[gd_scene load_steps=21 format=3 uid="uid://cy240sk4y7fo"]
 
 [ext_resource type="Script" path="res://Scenes/BloodFormation/blood_formation.gd" id="1_wxb54"]
+[ext_resource type="Texture2D" uid="uid://c3085qmgifcts" path="res://Assets/Sprites/Effects/Spell_effects/Fire_spell_end.png" id="2_mamu4"]
+[ext_resource type="Texture2D" uid="uid://cs43fmy33x7eu" path="res://Assets/Sprites/Effects/Spell_effects/Ice_spell_end.png" id="3_tjlns"]
+[ext_resource type="Texture2D" uid="uid://by2wsuuor5o6m" path="res://Assets/Sprites/Effects/Spell_effects/heal_spell_end.png" id="4_rdose"]
+[ext_resource type="AudioStream" uid="uid://b7ykujfyac51n" path="res://Assets/Sounds/Player/Skill_Fire.mp3" id="5_6mj8g"]
+[ext_resource type="AudioStream" uid="uid://upnt0q5inegj" path="res://Assets/Sounds/Player/Skill_Ice.mp3" id="6_ba7yy"]
+[ext_resource type="AudioStream" uid="uid://tu4ftkeb36ah" path="res://Assets/Sounds/Player/Skill_Heal.mp3" id="7_pudfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7pbh"]
+atlas = ExtResource("2_mamu4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w2mr"]
+atlas = ExtResource("2_mamu4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd04r"]
+atlas = ExtResource("2_mamu4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kacn"]
+atlas = ExtResource("2_mamu4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7rm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7pbh")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3w2mr")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kd04r")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_3kacn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gqip"]
+atlas = ExtResource("3_tjlns")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rvfh"]
+atlas = ExtResource("3_tjlns")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao0ac"]
+atlas = ExtResource("3_tjlns")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oot6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gqip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rvfh")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_ao0ac")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifoup"]
+atlas = ExtResource("4_rdose")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tygq8"]
+atlas = ExtResource("4_rdose")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfvmy"]
+atlas = ExtResource("4_rdose")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_akm4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifoup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tygq8")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_pfvmy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="BloodFormation" type="Node2D"]
 script = ExtResource("1_wxb54")
@@ -18,5 +118,44 @@ disabled = true
 wait_time = 0.1
 one_shot = true
 
+[node name="FireSpellEnd" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 10
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x7rm3")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="IceSpellEnd" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 10
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_oot6e")
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
+
+[node name="HealSpellEnd" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 10
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_akm4s")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="AudioFire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6mj8g")
+
+[node name="AudioIce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ba7yy")
+
+[node name="AudioHeal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_pudfq")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="FireSpellEnd" to="." method="_on_fire_spell_end_animation_finished"]
+[connection signal="animation_finished" from="IceSpellEnd" to="." method="_on_ice_spell_end_animation_finished"]
+[connection signal="animation_finished" from="HealSpellEnd" to="." method="_on_heal_spell_end_animation_finished"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsn8dea13r2og"]
 
-[ext_resource type="PackedScene" uid="uid://cqwvq1nar3vic" path="res://Scenes/Blood/blood.tscn" id="1_wjgc6"]
+[ext_resource type="PackedScene" uid="uid://cqwvq1nar3vic" path="res://Scenes/BloodFormation/Blood/blood.tscn" id="1_wjgc6"]
 [ext_resource type="Texture2D" uid="uid://bxoqb2noalxq5" path="res://Assets/Sprites/Blood/blood_heal.png" id="2_0k5mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgarr"]

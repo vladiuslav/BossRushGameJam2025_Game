@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cqwvq1nar3vic"]
 
-[ext_resource type="Script" path="res://Scenes/Blood/blood.gd" id="1_4ty2l"]
+[ext_resource type="Script" path="res://Scenes/BloodFormation/Blood/blood.gd" id="1_4ty2l"]
 
 [node name="blood" type="Area2D"]
 collision_layer = 8

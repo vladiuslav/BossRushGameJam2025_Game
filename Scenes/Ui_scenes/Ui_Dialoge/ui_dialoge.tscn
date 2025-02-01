@@ -33,7 +33,16 @@ offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gdbh3")
-text = "Person: \"Example of dialoge line\""
+text = "Person: \"Example of dialoge line\"adsd sad asdasdasd"
+text_overrun_behavior = 2
 script = ExtResource("1_5i0xv")
 
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 609.5
+offset_right = 631.5
+offset_bottom = 45.0
+text = " > "
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
