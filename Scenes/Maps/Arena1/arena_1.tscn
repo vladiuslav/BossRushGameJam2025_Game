@@ -20,7 +20,7 @@ collision_mask = 3
 visible = false
 
 [node name="UiDialoge" parent="CanvasLayer" index="2"]
-Lines = PackedStringArray("Boss Ogre: \"You small. You weak. You snack!\"", "Player: \"I’m not on the menu, big guy.\"", "Boss Ogre: \"Then I make you soup!\"", "Player: \"You’ll need better ingredients than that.\"", "Boss Ogre: \"Hmm… maybe add crushed bones?\"", "Player: \"Only if they’re yours!\"")
+Lines = PackedStringArray("Ogre: *Sniffs* \"Who dares to crash my party uninvited?\"", "Player: \"A party? Is that what you\'re calling your own funeral?\"", "Ogre: \"Your sword is only good as a toothpick, hahaha...Teeth... Picking... Ahahah!\"", "Player: \"And you’re only good as a punching bag, hahaha... Punching... Bag... Ahaha... Damn, this is contagious.\"", "Ogre: \"You\'ll make a fine ingredient for my new soup. I just found the perfect recipe.\"", "Player: \"Time for reckoning...No, wait, that\'s from another dialogue... Damn, how did it go...\"", "Ogre: \"What did you say?\"", "Player: \"I said your time has come... No, that’s not it either... Oh, right, Avada Kedavra—no, still wrong.\"", "Player: \"Ahem...\"", "Player: \"Prepare to see your own blood... and your entire insides crawling with parasites.\"")
 
 [node name="AudioLevelWin" type="AudioStreamPlayer2D" parent="." index="8"]
 process_mode = 3

@@ -30,7 +30,8 @@ position = Vector2(120, 227)
 visible = false
 
 [node name="UiDialoge" parent="CanvasLayer" index="2"]
-Lines = PackedStringArray("May be it to", "Works")
+
+Lines = PackedStringArray("Zeus: \"You are not prepared.\"", "Player: \"No, actually, I am ready.\"", "Zeus: \"Oh, well… since you\'re ready...\"", "Player: \"Wait, ready for what exactly?\"", "Zeus: \"For your death.\" ", "Zeus: \"You came into my domain and dared to kill my servants.\"", "Zeus: \"Do you think you’ll get away with it?\"", "Player: \"I just need to kill you, and that will be the end of your long-lasting tyranny, won’t it?\"", "Zeus: \"Do you really think you can defeat me so easily?\"", "Zeus: \"You are nothing but filth, and you deserve nothing more than to die in the mud.\"", "Player: \"In that case, I’ll make sure you drown in it.\"")
 
 [node name="Boss_3" parent="." index="7" instance=ExtResource("4_n4ykk")]
 position = Vector2(132, 61)
