@@ -44,6 +44,9 @@ offset_left = 12.0
 offset_top = 12.0
 offset_right = 112.0
 offset_bottom = 28.0
+min_value = -30.0
+max_value = 0.0
+value = -30.0
 
 [node name="Label" type="Label" parent="Settings"]
 layout_mode = 0
@@ -139,6 +142,7 @@ text = "Quit"
 stream = ExtResource("5_mfu7a")
 autoplay = true
 
+[connection signal="value_changed" from="Settings/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="LevelsContainer/MarginContainer/HBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="LevelsContainer/MarginContainer/HBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="LevelsContainer/MarginContainer/HBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
