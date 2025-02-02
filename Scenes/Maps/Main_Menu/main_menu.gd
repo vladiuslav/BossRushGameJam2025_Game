@@ -2,12 +2,13 @@ extends Control
 
 @onready var levels_container: MarginContainer = $LevelsContainer
 @onready var settings: TextureRect = $Settings
+@onready var h_slider: HSlider = $Settings/HSlider
 
 var master_bus = AudioServer.get_bus_index("Master")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	h_slider.value = AudioServer.get_bus_volume_db(master_bus)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

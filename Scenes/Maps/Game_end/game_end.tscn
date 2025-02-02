@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwcjivbvm3v0t"]
+
+[ext_resource type="Script" path="res://Scenes/Maps/Game_end/game_end.gd" id="1_j5ved"]
+[ext_resource type="Texture2D" uid="uid://dwmdvdx3sh63u" path="res://Assets/Sprites/Arens/Dojo.png" id="1_qfd1k"]
+[ext_resource type="Texture2D" uid="uid://crgetxsssdwc3" path="res://Assets/Sprites/UI/Ui_Button.png" id="2_u78m7"]
+[ext_resource type="PackedScene" uid="uid://drwp1x20qhiye" path="res://Scenes/Ui_scenes/Ui_Dialoge/ui_dialoge.tscn" id="3_cwicy"]
+[ext_resource type="AudioStream" uid="uid://cuyvpa0htc56p" path="res://Assets/Music/CreditsSong.mp3" id="4_k4jaa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h3kk3"]
+font_size = 42
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameEnd" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5ved")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 900.0
+offset_bottom = 900.0
+texture = ExtResource("1_qfd1k")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -75.0
+offset_right = 275.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u78m7")
+
+[node name="Label" type="Label" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -29.0
+offset_right = 225.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thank you for playing."
+label_settings = SubResource("LabelSettings_h3kk3")
+
+[node name="UiDialoge" parent="." instance=ExtResource("3_cwicy")]
+layout_mode = 1
+offset_left = -226.0
+offset_top = -132.0
+offset_right = 226.0
+offset_bottom = -87.0
+Lines = PackedStringArray("Developed by:Roman (KTSNK) Holovachev, Vladyslav (Limlut) Hrytsyna", "Music sourced from open platforms, thanks to:Panda Beats, Cody O’Quinn", "Special thanks for the help: Kyrylo Bachynskyi, Daniil (Roshan’s MMR) Dobryansky")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_k4jaa")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(450, 450)
